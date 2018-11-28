@@ -22,8 +22,6 @@ def add_player_name():
     print(' ')
     print((Player1) + ' is X and ' + (Player2) + ' is O')
 
-    #printboard()
-
 
 # checks the winner
 def check_win_game(board, win_player):
@@ -34,32 +32,52 @@ def check_win_game(board, win_player):
         board[2] == win_player and board[5] == win_player and board[8] == win_player or
         board[3] == win_player and board[6] == win_player and board[9] == win_player or
         board[1] == win_player and board[5] == win_player and board[9] == win_player or
-            board[3] == win_player and board[5] == win_player and board[7] == win_player):
+        board[3] == win_player and board[5] == win_player and board[7] == win_player):
         return True
     else:
         return False
 
 
 # which player is the winner
-def player_win(board, player):
+def play_game(board, player1, player2):
+    movecount = 0
     while True:
-        move = input('Xs turn (1-9):')
-        move = int(move)
-        if move >= 1 and move <= 9:
-            if board[move] == ' ':
-                board[move] = 'X'
-                printboard(board)
-            else:
-                print('This position is already taken, choose another one!')
-    return board
+        if (movecount % 2 == 0):
+            move = input('Xs turn (1-9):')
+            move = int(move)
+            if move >= 1 and move <= 9:
+                if board[move] == ' ':
+                    board[move] = 'X'
+                    printboard(board)
+                    movecount = movecount + 1
+                else:
+                    print('This position is already taken, choose another one!')
+        if check_win_game(board, 'X'):
+            print('Congratulations!')
+            break
+        else:
+            move = input('Os turn (1-9):')
+            move = int(move)
+            if move >= 1 and move <= 9:
+                if board[move] == ' ':
+                    board[move] = 'O'
+                    printboard(board)
+                    movecount = movecount + 1
+                else:
+                    print('This position is already taken, choose another one!')
+        if check_win_game(board, 'O'):
+            print('Congratulations!')
+            break
+
 
 # start the game
 def main():
     b = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
     printboard(b)
     add_player_name()
-    player_win(b, 'X')
-    player_win(b, 'O')
+    play_game(b, 'X', 'O')
+    check_win_game(b, 'X')
+    check_win_game(b, 'O')
 
 
 main()
