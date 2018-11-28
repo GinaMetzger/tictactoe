@@ -53,7 +53,7 @@ def player_win(board, player):
                 print('This position is already taken, choose another one!')
     return board
 
-
+# start the game
 def main():
     b = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
     printboard(b)
