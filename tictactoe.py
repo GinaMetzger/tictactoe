@@ -1,6 +1,3 @@
-# import os
-
-
 # the program draw a board where the players can be play
 def printboard(board):
     print(' ')
@@ -52,8 +49,10 @@ def play_game(board, player1, player2):
                     movecount = movecount + 1
                 else:
                     print('This position is already taken, choose another one!')
+            else:
+                print('Invalid move! Try again') 
         if check_win_game(board, 'X'):
-            print('Congratulations!')
+            print('Congratulations, X won!')
             break
         else:
             move = input('Os turn (1-9):')
@@ -65,9 +64,19 @@ def play_game(board, player1, player2):
                     movecount = movecount + 1
                 else:
                     print('This position is already taken, choose another one!')
+            else:
+                print('Invalid move! Try again')        
         if check_win_game(board, 'O'):
             print('Congratulations!')
             break
+
+def replay():
+    play_again = input('Would you like to play again? Please type Y for YES or N for NO.')
+    if play_again.upper() == 'Y':
+         main()
+    elif play_again == 'N':
+        print('See you later')
+         
 
 
 # start the game
@@ -76,8 +85,7 @@ def main():
     printboard(b)
     add_player_name()
     play_game(b, 'X', 'O')
-    check_win_game(b, 'X')
-    check_win_game(b, 'O')
-
+    check_win_game(b, 'winner')
 
 main()
+replay()
