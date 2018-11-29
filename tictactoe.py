@@ -1,13 +1,27 @@
 import os
+import time
+
+
+def print_header():
+    print("""
+WELCOME TO
+ _____  _  ____     _____   ____    ____     _____  ____  _____
+/__ __\| |/   _\   /__ __\ /  _ \  /   _\   /__ __\/  _ \/  __/  
+  | |  | ||  / _____ | |   | | | | |  / _____ | |  | / \||  \ 
+  | |  | ||  \_\____\| |   | |-| | |  \_\____\| |  | \_/||  /_
+  |_|  |_|\____/     |_|   |_| |_| \____/     |_|  \____/\____\ 
+
+""")
+
 
 # the program draw a board where the players can be play
 def printboard(board):
     print(' ')
-    print(' ' + board[7] + ' | ' + board[8] + ' | ' + board[9])
-    print('-----------')
-    print(' ' + board[4] + ' | ' + board[5] + ' | ' + board[6])
-    print('-----------')
-    print(' ' + board[1] + ' | ' + board[2] + ' | ' + board[3])
+    print(' ' + board[7] + ' | ' + board[8] + ' | ' + board[9] + '    ' + '      ' + '7' + ' | ' + '8' + ' | ' + '9')
+    print('-----------' + '        ' + '-----------')
+    print(' ' + board[4] + ' | ' + board[5] + ' | ' + board[6] + '    ' + '      ' + '4' + ' | ' + '5' + ' | ' + '6')
+    print('-----------' + '        ' + '-----------')
+    print(' ' + board[1] + ' | ' + board[2] + ' | ' + board[3] + '    ' + '      ' + '1' + ' | ' + '2' + ' | ' + '3')
     print(' ')
 
 
@@ -48,12 +62,12 @@ def play_game(board, player1, player2):
                 if move >= 1 and move <= 9:
                     if board[move] == ' ':
                         board[move] = 'X'
-                        printboard(board)
                         movecount = movecount + 1
                     else:
                         print('This position is already taken, choose another one!')
             except ValueError:
                 print('Invalid move! Try again')
+        time.sleep(1)
         os.system("clear")
         printboard(board)
         if check_win_game(board, 'X'):
@@ -66,16 +80,16 @@ def play_game(board, player1, player2):
                 if move >= 1 and move <= 9:
                     if board[move] == ' ':
                         board[move] = 'O'
-                        printboard(board)
                         movecount = movecount + 1
                     else:
                         print('This position is already taken, choose another one!')
             except ValueError:
                 print('Invalid move! Try again')
+        time.sleep(1)
         os.system("clear")
         printboard(board)
         if check_win_game(board, 'O'):
-            print('Congratulations! O won!')
+            print('Congratulations, O won!')
             break
 
 
@@ -87,11 +101,13 @@ def replay(board):
         printboard(board)
     elif play_again.upper() == 'N':
         print('See you later!')
+    time.sleep(1)
 
 
 # start the game
 def main():
     b = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+    print_header()
     printboard(b)
     add_player_name()
     os.system("clear")
