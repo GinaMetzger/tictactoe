@@ -137,11 +137,11 @@ def move_on_board(board, player):
 
 # AI moves
 def computer_move(board, computer):
-    movecount = 0
     move = random.randint(1, 10)
     if board[move] == ' ':
         board[move] = computer
-        movecount = movecount + 1
+    else:
+        print('This position is already taken, choose another')
     win_game(board)
 
 
